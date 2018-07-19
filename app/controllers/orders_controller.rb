@@ -8,7 +8,6 @@ class OrdersController < ApplicationController
   def create
     charge = perform_stripe_charge
     order  = create_order(charge)
-    @lineitems = order.line_items.order(created_at: :desc)
     if order.valid?
       UserMailer.welcome_email(order: order).deliver
       empty_cart!
