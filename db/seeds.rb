@@ -33,8 +33,6 @@ cat3 = Category.find_or_create_by! name: 'Furniture'
 
 puts "Re-creating Products ..."
 
-User.destroy_all
-
 Product.destroy_all
 
 cat1.products.create!({
@@ -133,6 +131,41 @@ cat3.products.create!({
   quantity: 0,
   price: 2_483.75
 })
+
+## REVIEWS
+
+p1 = Product.find_by name: 'Red Bookshelf'
+p2 = Product.find_by name: 'Electric Chair'
+
+# Review.destroy_all
+
+p1.reviews.create!({
+  rating: 1,
+  description: Faker::Hipster.paragraph(4)
+})
+
+p1.reviews.create!({
+  rating: 5,
+  description: Faker::Hipster.paragraph(4)
+})
+
+p2.reviews.create!({
+  rating: 3,
+  description: Faker::Hipster.paragraph(4)
+})
+
+p2.reviews.create!({
+  rating: 2,
+  description: Faker::Hipster.paragraph(4)
+})
+
+p2.reviews.create!({
+  rating: 5,
+  description: Faker::Hipster.paragraph(4)
+})
+
+puts p2.reviews.all
+
 
 
 puts "DONE!"
