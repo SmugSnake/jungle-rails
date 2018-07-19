@@ -33,6 +33,8 @@ cat3 = Category.find_or_create_by! name: 'Furniture'
 
 puts "Re-creating Products ..."
 
+User.destroy_all
+
 Product.destroy_all
 
 cat1.products.create!({
