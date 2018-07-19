@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+ <%= render @lineitems%>
+ <td>
+ Order total: $<%= @order.total_cents/100%>
+ </td>
+  </body>
+</html>

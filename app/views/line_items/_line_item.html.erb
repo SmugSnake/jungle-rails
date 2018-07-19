@@ -1,16 +1,18 @@
-
-
+<td>
+  <%= image_tag line_item.product.image.tiny%>
+</td>
+<td>
+  Product:
+  <%=line_item.product.name%>
+</td>
+<td>
+  Description:
+  <%=line_item.product.description%>
     <td>
-      <%= image_tag line_item.product.image.tiny%>
+      Quantity:
+      <%= line_item.quantity%>
     </td>
     <td>
-          Product: <%=line_item.product.name%>
-          </td>
-          <td>
-          Description: <%=line_item.product.description%>
-          <td>
-        Quantity: <%= line_item.quantity%>
-    </td>
-    <td>
-      Total price: <%=line_item.product.price * line_item.quantity%>
+      Total price:
+      <%=line_item.product.price * line_item.quantity%>
     </td>
