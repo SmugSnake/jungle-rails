@@ -24,7 +24,7 @@
    <% if product.reviews.average(:rating).to_f.round == 0%>
    No Reviews
    <% elsif %>
-   Average rating: <%= render_stars(product.reviews.average(:rating).to_f.round) %>
+   Average rating: <%= render_stars(product.reviews.average(:rating).to_f) %>
     <%end%>
   </aside>
   <% if product.quantity <= 0 %>
