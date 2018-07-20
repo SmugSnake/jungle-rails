@@ -1,12 +1,17 @@
 
 <div>
-        <dl class="dl-horizontal">
+        <dl class="dl-vertical">
           <dt>User</dt>
-          <dd>First_name + Last_name</dd>
+          <dd><%= review.user.first_name%> <%=review.user.last_name%></dt>
           <dt>Rating</dt>
           <dd><%= review.rating %></dd>
           <dt>Description</dt>
           <dd><%= review.description %></dd>
+          <% if current_user%>
+          <% if current_user.id == review.user.id %>
+          <dd> <%= link_to fa_icon('trash'), product_review_path(:product_id =>@product.id, :id => review.id), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" }  %></dd>
+          <% end %>
+          <% end %>
         </dl>
 </div>
 

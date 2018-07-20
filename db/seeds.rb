@@ -23,6 +23,14 @@ end
 
 ## USERS
 
+u1 = User.create!({
+  first_name: 'Evan',
+  last_name: 'Kerr',
+  email: 'evankrkerr90@gmail.com',
+  password: 'test',
+  password_digest: 'test'
+})
+puts u1.id
 
 ## CATEGORIES
 
@@ -144,27 +152,32 @@ p2 = Product.find_by name: 'Electric Chair'
 
 p1.reviews.create!({
   rating: 1,
-  description: Faker::Hipster.paragraph(4)
+  description: Faker::Hipster.paragraph(4),
+  user_id: 1
 })
 
 p1.reviews.create!({
   rating: 5,
-  description: Faker::Hipster.paragraph(4)
+  description: Faker::Hipster.paragraph(4),
+  user_id: 1
 })
 
 p2.reviews.create!({
   rating: 3,
-  description: Faker::Hipster.paragraph(4)
+  description: Faker::Hipster.paragraph(4),
+  user_id: 1
 })
 
 p2.reviews.create!({
   rating: 2,
-  description: Faker::Hipster.paragraph(4)
+  description: Faker::Hipster.paragraph(4),
+  user_id: 1
 })
 
 p2.reviews.create!({
   rating: 5,
-  description: Faker::Hipster.paragraph(4)
+  description: Faker::Hipster.paragraph(4),
+  user_id: 1
 })
 
 puts p2.reviews.all

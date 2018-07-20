@@ -20,6 +20,13 @@
   <aside class="price">
     <%= humanized_money_with_symbol product.price %>
   </aside>
+   <aside class="rating">
+   <% if product.reviews.average(:rating).to_f.round == 0%>
+   No Reviews
+   <% elsif %>
+    <%= product.reviews.average(:rating).to_f.round %>
+    <%end%>
+  </aside>
   <% if product.quantity <= 0 %>
     <aside class="quantity">
      SOLD OUT!
