@@ -16,10 +16,29 @@ ActiveRecord::Schema.define(version: 20180719181355) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "assignments", force: :cascade do |t|
+    t.string  "name",       limit: 50, null: false
+    t.date    "start_date",            null: false
+    t.date    "end_date",              null: false
+    t.integer "rank_id"
+    t.integer "sailor_id"
+    t.integer "ship_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "famous_people", id: :bigserial, force: :cascade do |t|
+    t.string "first_name", limit: 50
+    t.string "last_name",  limit: 50
+    t.date   "birthdate"
+  end
+
+  create_table "fleets", force: :cascade do |t|
+    t.string "name", limit: 50, null: false
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -56,6 +75,10 @@ ActiveRecord::Schema.define(version: 20180719181355) do
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
 
+  create_table "ranks", force: :cascade do |t|
+    t.string "name", limit: 50, null: false
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "user_id"
@@ -63,6 +86,17 @@ ActiveRecord::Schema.define(version: 20180719181355) do
     t.integer  "rating"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "sailors", force: :cascade do |t|
+    t.string "name",          limit: 50, null: false
+    t.date   "date_of_birth",            null: false
+  end
+
+  create_table "ships", force: :cascade do |t|
+    t.string  "name",       limit: 50, null: false
+    t.date    "date_built",            null: false
+    t.integer "fleet_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,7 +108,11 @@ ActiveRecord::Schema.define(version: 20180719181355) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "assignments", "ranks", name: "assignments_rank_id_fkey", on_delete: :cascade
+  add_foreign_key "assignments", "sailors", name: "assignments_sailor_id_fkey", on_delete: :cascade
+  add_foreign_key "assignments", "ships", name: "assignments_ship_id_fkey", on_delete: :cascade
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
   add_foreign_key "products", "categories"
+  add_foreign_key "ships", "fleets", name: "ships_fleet_id_fkey", on_delete: :cascade
 end
