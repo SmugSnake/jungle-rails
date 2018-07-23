@@ -82,7 +82,7 @@ RSpec.describe User, type: :model do
         email: 'test@test1.com',
         password: 'test'
       })
-      user = User.authenticate_with_credentials({:email => 'test@test1.com', :password => 'test'})
+      user = User.authenticate_with_credentials(:email => 'test@test1.com', :password => 'test')
       expect(user).to be_present
     end
     it "should not return a user" do
@@ -92,7 +92,7 @@ RSpec.describe User, type: :model do
         email: 'test@test1.com',
         password: 'test'
       })
-      user = User.authenticate_with_credentials({:email => 'test@test10.com', :password => 'test'})
+      user = User.authenticate_with_credentials(:email => 'test@test10.com', :password => 'test')
       expect(user).to be_nil
     end
     it "should return a user despite extra spaces at beginning and different cases" do
@@ -102,7 +102,8 @@ RSpec.describe User, type: :model do
         email: 'test@test1.com',
         password: 'test'
       })
-      user = User.authenticate_with_credentials({:email => '  test@Test1.COm', :password => 'test'})
+      user = User.authenticate_with_credentials(:email => '  test@Test1.COm', 
+      :password => 'test')
       expect(user).to be_present
     end
   end
